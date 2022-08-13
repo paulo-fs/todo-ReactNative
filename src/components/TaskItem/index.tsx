@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
+import { Context } from "../../shared/context/Context";
 import { TaskType } from "../../shared/interfaces/tasks";
 import { styles } from "./styles";
 
@@ -7,7 +9,12 @@ interface PropTypes{
 }
 
 export function TaskItem({task}: PropTypes){
-  const {message, isDone} = task
+  const { deleteTask } = useContext(Context);
+  const {message, isDone, id} = task;
+
+  function handleDeleteTask(){
+    deleteTask(id);
+  }
 
   return (
     <View 
@@ -35,7 +42,10 @@ export function TaskItem({task}: PropTypes){
           {message}
         </Text>
 
-        <TouchableOpacity style={styles.trashButton}>
+        <TouchableOpacity 
+          style={styles.trashButton}
+          onPress={handleDeleteTask}
+        >
           <Image 
             source={require('../../../assets/trash.png')} 
             style={styles.trash}

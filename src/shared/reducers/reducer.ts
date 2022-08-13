@@ -1,4 +1,4 @@
-import { TaskState, TaskType } from "../interfaces/tasks";
+import { TaskType } from "../interfaces/tasks";
 import { Actions } from "./actions";
 
 export function reducers(state: TaskType[], action: any){
@@ -6,8 +6,9 @@ export function reducers(state: TaskType[], action: any){
     case Actions.ADD_NEW_TASK:
       return [...state, action.payload.newTask]
     case Actions.DELETE_TASK:
-      console.log(action.payload.taskId)
-      return state
+      const id = action.payload.taskId
+      const filteredList = state.filter(task => task.id !== id);
+      return filteredList
     case Actions.SET_TASK_DONE:
       console.log(action.payload.doneTask)
       return state
