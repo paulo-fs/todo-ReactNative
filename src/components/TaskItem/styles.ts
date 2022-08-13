@@ -10,6 +10,7 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     flexDirection: 'row',
     alignItems: 'center',
+    marginBottom: 8
   },
 
   taskChecked: {backgroundColor: '#333333',
@@ -17,7 +18,9 @@ export const styles = StyleSheet.create({
   padding: 16,
   borderRadius: 8,
   flexDirection: 'row',
-  alignItems: 'center',},
+  alignItems: 'center',
+  marginBottom: 8
+},
 
   unchecked: {
     width: 17,

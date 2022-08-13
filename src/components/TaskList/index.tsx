@@ -1,13 +1,25 @@
-import { Image, Text, TouchableOpacity, View } from "react-native";
+import { useContext } from "react";
+import { View } from "react-native";
+
+import { Context } from "../../shared/context/Context";
 import { TaskItem } from "../TaskItem";
+
 import { styles } from "./styles";
 
 export function TaskList(){
-  const tasks = ['task1', 'task2', 'task3'];
+  const {tasks} = useContext(Context);
   
   return (
     <View style={styles.container}>
-      <TaskItem />
+      {
+        tasks.map(task => {
+          return <TaskItem 
+            key={task.id}
+            task={task}
+          />
+        })
+      }
+      {/* <TaskItem /> */}
     </View>
   )
 }

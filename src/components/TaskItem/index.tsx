@@ -1,18 +1,23 @@
 import { Image, Text, TouchableOpacity, View } from "react-native";
+import { TaskType } from "../../shared/interfaces/tasks";
 import { styles } from "./styles";
 
-export function TaskItem(){
-  const check =  false;
+interface PropTypes{
+  task: TaskType
+}
+
+export function TaskItem({task}: PropTypes){
+  const {message, isDone} = task
 
   return (
     <View 
-        style={ check
+        style={ isDone
           ? styles.taskChecked
           : styles.task
         }
         >
 
-        { check
+        { isDone
           ? <TouchableOpacity style={styles.checkedContainer}>
               <Image source={require('../../../assets/check.png')} style={styles.checked} />
             </TouchableOpacity>
@@ -22,12 +27,12 @@ export function TaskItem(){
         
 
         <Text 
-          style={ check
+          style={ isDone
             ? styles.descriptionChecked
             : styles.descriptionUnchecked
           }
         >
-          Integer urna interdum massa libero auctor neque turpis turpis semper.
+          {message}
         </Text>
 
         <TouchableOpacity style={styles.trashButton}>

@@ -4,8 +4,7 @@ import { Actions } from "./actions";
 export function reducers(state: TaskType[], action: any){
   switch(action.type){
     case Actions.ADD_NEW_TASK:
-      console.log(action.payload.newTask)
-      return state
+      return [...state, action.payload.newTask]
     case Actions.DELETE_TASK:
       console.log(action.payload.taskId)
       return state
