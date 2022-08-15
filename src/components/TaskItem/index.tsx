@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Image, Text, TouchableOpacity, View } from "react-native";
+import { Alert, Image, Text, TouchableOpacity, View } from "react-native";
 import { Context } from "../../shared/context/Context";
 import { TaskType } from "../../shared/interfaces/tasks";
 import { styles } from "./styles";
@@ -13,7 +13,17 @@ export function TaskItem({task}: PropTypes){
   const {message, isDone, id} = task;
 
   function handleDeleteTask(){
-    deleteTask(id);
+    Alert.alert(
+      'Excluir Task',
+      `Deseja excluir a task ${message}?`,
+      [
+        {
+          text: 'Confirmar',
+          onPress: () => deleteTask(id)
+        },
+        { text: 'Cancelar' }
+      ]
+    )
   }
 
   function handleCheckTask() {
