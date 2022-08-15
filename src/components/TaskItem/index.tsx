@@ -9,11 +9,16 @@ interface PropTypes{
 }
 
 export function TaskItem({task}: PropTypes){
-  const { deleteTask } = useContext(Context);
+  const { deleteTask, checkTask } = useContext(Context);
   const {message, isDone, id} = task;
 
   function handleDeleteTask(){
     deleteTask(id);
+  }
+
+  function handleCheckTask() {
+    const alteredTask = {...task, isDone: !isDone}
+    checkTask(alteredTask)
   }
 
   return (
@@ -25,10 +30,16 @@ export function TaskItem({task}: PropTypes){
         >
 
         { isDone
-          ? <TouchableOpacity style={styles.checkedContainer}>
+          ? <TouchableOpacity 
+              style={styles.checkedContainer}
+              onPress={handleCheckTask}
+            >
               <Image source={require('../../../assets/check.png')} style={styles.checked} />
             </TouchableOpacity>
-          : <TouchableOpacity style={styles.unchecked}>
+          : <TouchableOpacity 
+              style={styles.unchecked}
+              onPress={handleCheckTask}
+            >
             </TouchableOpacity>
         }
         

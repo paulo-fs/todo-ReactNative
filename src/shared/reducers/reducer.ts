@@ -10,8 +10,14 @@ export function reducers(state: TaskType[], action: any){
       const filteredList = state.filter(task => task.id !== id);
       return filteredList
     case Actions.SET_TASK_DONE:
-      console.log(action.payload.doneTask)
-      return state
+      const doneTask = action.payload.doneTask;
+      const alteredList = state.map(task => {
+        if(task.id === doneTask.id){
+          return doneTask
+        }
+        return task
+      })
+      return alteredList;
     default:
       return state;
   }
